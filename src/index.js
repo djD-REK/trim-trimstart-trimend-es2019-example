@@ -8,31 +8,32 @@ document.getElementById("app").innerHTML = `
 </div>
 `;
 
-// A .csv file (comma separated values) usually won't contain any extraneous whitespace
+// A .csv file (comma separated values) usually won't contain any extraneous whitespace:
 const csvManifest =
   "William Brian,William Martin,Henry Ravens,Richard Knowles,Stephen Hopkins";
 // If we assume the file has no extra whitespace, there is no need to trim the strings:
 console.log(csvManifest.split(","));
-// Result:
+// Result: ["William Brian", "William Martin", "Henry Ravens", "Richard Knowles", "Stephen Hopkins"]
 
-// The following .csv file has a leading space in entries after the first one.
+// The following .csv file has a leading space in entries after the first one:
 const passengerManifest =
   "William Brian, William Martin, Henry Ravens, Richard Knowles, Stephen Hopkins";
 // If we expect a certain pattern of whitespace, we can modify or split() or add a trim():
 console.log(passengerManifest.split(",")); // This will leave leading whitespace
-// Result:
+// Result: ["William Brian", " William Martin", " Henry Ravens", " Richard Knowles", " Stephen Hopkins"]
 console.log(passengerManifest.split(", ")); // We can fix it by adjusting the split() pattern to ", "
-// Result:
+// Result: ["William Brian", "William Martin", "Henry Ravens", "Richard Knowles", "Stephen Hopkins"]
 console.log(passengerManifest.split(",").map(person => person.trimStart())); // Or we can trimStart()
-// Result:
+// Result: ["William Brian", "William Martin", "Henry Ravens", "Richard Knowles", "Stephen Hopkins"]
 // This has the advantage that it would still work with any amount of leading whitespace.
-// Note: The function trimStart() is also called trimLeft().
+// Note: The function string.prototype.trimStart() is also called string.prototype.trimLeft().
 
-// The following .csv file has tabbed indenting but also trailing whitespace that needs to be removed.
+// The following .csv file has tabbed indenting but also trailing whitespace that needs to be removed:
 const formattedManifest =
   "William Brian    ,  William Martin   ,  Henry Ravens ,Richard Knowles   ,  Stephen Hopkins   ";
 console.log(formattedManifest.split(",").map(person => person.trim())); // This removes the indenting
-// Result:
-console.log(formattedManifest.split(",").map(person => person.trimEnd())); // Or we can trimStart()
-// Result:
-// Note: The function trimEnd() is also called trimRight().
+// Result: ["William Brian", "William Martin", "Henry Ravens", "Richard Knowles", "Stephen Hopkins"]
+console.log(formattedManifest.split(",").map(person => person.trimEnd())); // This only trims the ends
+// Result: ["William Brian", "  William Martin", "  Henry Ravens", "Richard Knowles", "  Stephen Hopkins"]
+// The result retains the indenting (on the left side) but removes the extraneous space (on the right).
+// Note: The function string.prototype.trimEnd() is also called string.prototype.trimRight().
