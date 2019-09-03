@@ -37,3 +37,14 @@ console.log(formattedManifest.split(",").map(person => person.trimEnd())); // Th
 // Result: ["William Brian", "  William Martin", "  Henry Ravens", "Richard Knowles", "  Stephen Hopkins"]
 // The result retains the indenting (on the left side) but removes the extraneous space (on the right).
 // Note: The function string.prototype.trimEnd() is also called string.prototype.trimRight().
+
+/////////////////////////////////////////////
+const myString = " Hello world! ";
+console.log(myString.trim()); // The leading and trailing whitespace are removed: "Hello world!"
+console.log(myString); // The original string remains unchanged: " Hello world! "
+
+// trim() is used with a . (dot-reference operator), not:
+// trim(myString);
+// This would result in "ReferenceError: trim is not defined"
+
+////////////////////////////////////////////
